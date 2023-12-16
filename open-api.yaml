@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+  title: African Blowling game
+  version: 1.0.0
+paths:
+  /games:
+    post:
+      summary: Create a new Game
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AfricanBowlingGame'
+    patch:
+      summary: Update the game based on throw value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AfricanBowlingGame'
+components:
+  schemas:
+    AfricanBowlingGame:
+      type: object
+      properties:
+        frames:
+          type: array
+          items:
+            $ref: '#/components/schemas/AfricanBowlingFrame'
+
+    AfricanBowlingFrame:
+      type: object
+      properties:
+        throwScores:
+          type: array
+          items:
+            type: integer
+        bonusScores:
+          type: array
+          items:
+            type: integer
